@@ -13,17 +13,16 @@ export default () => {
     });
   }, []);
 
-  return (
-    <div>
-    {loggedIn && (
-      <>
-        <h1>Settings</h1>
-        <div>
-          <img src={Map}></img>
-        </div>
-      </>
-    )}
-  </div>
-
-  );
+  if (loggedIn) {
+    return (
+      <div>
+          <div>
+            <img src={Map}></img>
+          </div>
+    </div>
+    );
+  }
+  else {
+    return (null);
+  }
 };

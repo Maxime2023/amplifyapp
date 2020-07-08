@@ -39,11 +39,10 @@ export default () => {
       console.log("oui");
     }
   }
-
+  if (!loggedIn) {
   return (
 
     <div className="loginForm">
-      {!loggedIn && (
       <Form onSubmit={onSubmit}>
         <h1 className="loginTitle">Se connecter</h1>
         <div className="mailAdressTitle">Adresse e-mail</div>
@@ -68,14 +67,18 @@ export default () => {
             value={password}
             onChange={event => setPassword(event.target.value)}
           />
-          <div className="ButtonForm">
+          <div className="LoginButtonForm">
             <Button onClick={onSubmit}>Se connecter</Button>
           </div>
 
           </Form.Item>
         </div>
 
-      </Form>)}
+      </Form>
     </div>
   );
+          }
+          else {
+            return (null);
+          }
 };

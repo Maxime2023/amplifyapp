@@ -9,7 +9,11 @@ export default () => {
   const [password, setPassword] = useState('');
   const [confirmSecondPassword, confirmPassword] = useState('');
   const [isButtonPressed, changeButtonStatus] = useState(false);
-
+  const [verificationCode, setverificationcod] = useState('');
+  const [status, setStatus] = useState(false);
+  const { getSession, logout } = useContext(AccountContext);
+  const [user, setUser] = useState('');
+  
   const checkPasswords = () => {
     if (password !== confirmSecondPassword) {
       return ("passwordDiff");
@@ -19,9 +23,7 @@ export default () => {
     }
   }
 
-  const [status, setStatus] = useState(false);
 
-  const { getSession, logout } = useContext(AccountContext);
 
   useEffect(() => {
     getSession()
@@ -30,18 +32,31 @@ export default () => {
         setStatus(true);
       })
   }, []);
-
+  var cognitoUser;
   const onSubmit = event => {
     event.preventDefault();
     console.log(checkPasswords());
     changeButtonStatus(true);
     UserPool.signUp(email, password, [], null, (err, data) => {
       if (err) console.error(err);
-      console.log(data);
+      cognitoUser = data.user;
+      setUser(data.user);
+      console.log('user name is ' + cognitoUser.getUsername());
     });
   };
 
+  const verif = () => {
+    console.log("verif code", verificationCode);
+    user.confirmRegistration(verificationCode, true, function(err, result) {
+      if (err) {
+          alert(err);
+          return;
+      }
+      alert(result);
+  });
+  }
 
+  if (!status) {
   return (
     <div className="signupForm">
       <h1 className="signupTitle">S'inscrire</h1>
@@ -76,11 +91,19 @@ export default () => {
         {isButtonPressed && checkPasswords() === "passwordDiff"? <div className="passwordDiff">Les mots de passe sont différents</div> : null}
         <div className="SignupButtonForm">
           <Button onClick={onSubmit}>S'inscrire</Button>
+          <Button onClick={verif}>verifcode</Button>
         </div>
-
+        <Input
+            value={verificationCode}
+            onChange={event => setverificationcod(event.target.value)}
+          />
         </Form.Item>
         </div>
       </Form>
     </div>
   );
+        }
+        else {
+          return (null);
+        }
 };

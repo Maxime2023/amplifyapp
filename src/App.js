@@ -21,6 +21,8 @@ class App extends React.Component {
             <Signup />
             <Login />
           </div>
+          {/* <ForgotPassword/>
+          <Settings/> */}
           <MapChart/>
         </Account>
       </div>

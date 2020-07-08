@@ -53,7 +53,7 @@ export default () => {
 
   return (
     <div>
-      {/* {stage === 1 && (
+      {stage === 1 && (
         <form onSubmit={sendCode}>
           <input
             value={email}
@@ -76,7 +76,7 @@ export default () => {
           />
           <button type="submit">Changer le mot de passe</button>
         </form>
-      )} */}
+      )}
     </div>
   );
 };

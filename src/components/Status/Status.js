@@ -21,7 +21,10 @@ export default () => {
       {status ? (
         <div className="statusLogged">
           Vous etes connectés.
+          <div>
           <Button onClick={logout}>Se déconnecter</Button>
+          </div>
+
         </div>
       ) : <div className="statusWait"> Merci de bien vouloir vous connecter / s'inscrire</div>}
     </div>
