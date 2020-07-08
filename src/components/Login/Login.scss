@@ -1,0 +1,32 @@
+.loginForm {
+    border: 1px solid;
+    border-radius: 5px;
+    width: 30%;
+    margin: 10%;
+    .setEmail {
+        padding-left: 5%;
+        padding-right: 5%;
+        text-align: center;
+    }
+    
+    .setPassword {
+        padding-left: 5%;
+        padding-right: 5%;
+        text-align: center;
+    }
+    .loginTitle  {
+        text-align: center;
+    }
+    .mailAdressTitle {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .passwordTitle {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .LoginButtonForm {
+        margin-top: 10%;
+    }
+}
+

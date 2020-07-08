@@ -1,12 +1,13 @@
 import React from "react";
 import { Account } from "./components/Accounts";
-import Signup from "./components/Signup";
+import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import ForgotPassword from "./components/ForgotPassword";
-import Status from "./components/Status";
+import Status from "./components/Status/Status";
 import Settings from "./components/Settings";
 import MapChart from './components/Map';
 import Header from  "./components/Header/Header";
+import './App.css';
 
 
 class App extends React.Component {
@@ -16,10 +17,10 @@ class App extends React.Component {
         <Account>
           <Header/>
           <Status />
-          <Signup />
-          <Login />
-          <ForgotPassword />
-          <Settings />
+          <div className="SignUpAndLogin">
+            <Signup />
+            <Login />
+          </div>
           <MapChart/>
         </Account>
       </div>
@@ -28,16 +29,3 @@ class App extends React.Component {
 }
 
 export default App
-// export default () => {
-//   return (
-//     <Account>
-//       <Header/>
-//       <Status />
-//       <Signup />
-//       <Login />
-//       <ForgotPassword />
-//       <Settings />
-//       <MapChart/>
-//     </Account>
-//   );
-// };

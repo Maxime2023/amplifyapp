@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { AccountContext } from './Accounts';
+import { AccountContext } from '../Accounts';
 import { Button } from 'antd';
+import './Status.css';
 
 export default () => {
   const [status, setStatus] = useState(false);
@@ -16,13 +17,13 @@ export default () => {
   }, []);
 
   return (
-    <div>
+    <div className="status">
       {status ? (
-        <div>
+        <div className="statusLogged">
           Vous etes connectés.
           <Button onClick={logout}>Se déconnecter</Button>
         </div>
-      ) : <div>Merci de bien vouloir vous connecter</div>}
+      ) : <div className="statusWait"> Merci de bien vouloir vous connecter / s'inscrire</div>}
     </div>
   );
 };
