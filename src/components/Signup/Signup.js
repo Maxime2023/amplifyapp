@@ -13,7 +13,8 @@ export default () => {
   const [status, setStatus] = useState(false);
   const { getSession, logout } = useContext(AccountContext);
   const [user, setUser] = useState('');
-  
+  const [error, seterror] = useState('');
+
   const checkPasswords = () => {
     if (password !== confirmSecondPassword) {
       return ("passwordDiff");
@@ -22,9 +23,6 @@ export default () => {
       return ("passwordNotDiff");
     }
   }
-
-
-
   useEffect(() => {
     getSession()
       .then(session => {
@@ -32,21 +30,23 @@ export default () => {
         setStatus(true);
       })
   }, []);
-  var cognitoUser;
   const onSubmit = event => {
     event.preventDefault();
-    console.log(checkPasswords());
-    changeButtonStatus(true);
+    
     UserPool.signUp(email, password, [], null, (err, data) => {
-      if (err) console.error(err);
-      cognitoUser = data.user;
-      setUser(data.user);
-      console.log('user name is ' + cognitoUser.getUsername());
+      if (err) {
+        console.error(err.code);
+        seterror(err);
+      }
+      else {
+        changeButtonStatus(true);
+      }
+      if (data)
+        setUser(data.user);
     });
   };
 
   const verif = () => {
-    console.log("verif code", verificationCode);
     user.confirmRegistration(verificationCode, true, function(err, result) {
       if (err) {
           alert(err);
@@ -54,6 +54,13 @@ export default () => {
       }
       alert(result);
   });
+  }
+
+  const errormessage = () => {
+    if (seterror === "UsernameExistsException") {
+      console.log("l'utilisateur existe deja");
+      return ("L'adresse mail est deja utilsée");
+    }
   }
 
   if (!status) {
@@ -88,22 +95,28 @@ export default () => {
           value={confirmSecondPassword}
           onChange={event => confirmPassword(event.target.value)}
          />
-        {isButtonPressed && checkPasswords() === "passwordDiff"? <div className="passwordDiff">Les mots de passe sont différents</div> : null}
+        {isButtonPressed && checkPasswords() === "passwordDiff" ? <div className="passwordDiff">Les mots de passe sont différents</div> : null}
         <div className="SignupButtonForm">
           <Button onClick={onSubmit}>S'inscrire</Button>
-          <Button onClick={verif}>verifcode</Button>
-        </div>
-        <Input
+          </div>
+          {isButtonPressed && checkPasswords() === "passwordNotDiff" ? 
+          <div>
+          <div>Un code de confirmation vous a été envoyé</div>
+          <Input
             value={verificationCode}
             onChange={event => setverificationcod(event.target.value)}
           />
+          <div className="confirmationCodeButton">
+            <Button onClick={verif}>Confirmer le code</Button> 
+          </div>
+          </div>: <div></div>}
         </Form.Item>
         </div>
       </Form>
     </div>
   );
-        }
-        else {
-          return (null);
-        }
+  }
+  else {
+    return (null);
+  }
 };
