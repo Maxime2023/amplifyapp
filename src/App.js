@@ -1,26 +1,43 @@
-import React, { createContext } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Account } from "./components/Accounts";
+import Signup from "./components/Signup";
+import Login from "./components/Login/Login";
+import ForgotPassword from "./components/ForgotPassword";
+import Status from "./components/Status";
+import Settings from "./components/Settings";
+import MapChart from './components/Map';
+import Header from  "./components/Header/Header";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Account>
+          <Header/>
+          <Status />
+          <Signup />
+          <Login />
+          <ForgotPassword />
+          <Settings />
+          <MapChart/>
+        </Account>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
+// export default () => {
+//   return (
+//     <Account>
+//       <Header/>
+//       <Status />
+//       <Signup />
+//       <Login />
+//       <ForgotPassword />
+//       <Settings />
+//       <MapChart/>
+//     </Account>
+//   );
+// };
