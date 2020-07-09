@@ -1,8 +1,11 @@
 .signupForm {
-    border: 1px solid;
+    border: 1px solid lightgray;
     border-radius: 5px;
     width: 30%;
-    margin: 10%;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 2%;
     .setEmailSignup {
         padding-left: 5%;
         padding-right: 5%;
@@ -34,7 +37,10 @@
         padding-right: 5%;
     }
     .SignupButtonForm {
-        margin-top: 2%;
+        margin-top: 5%;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
     .confirmationCodeButton {
         margin-top: 2%;

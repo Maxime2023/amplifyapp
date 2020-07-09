@@ -1,8 +1,10 @@
 .loginForm {
-    border: 1px solid;
+    border: 1px solid lightgray;
     border-radius: 5px;
     width: 30%;
-    margin: 10%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 2%;
     .setEmail {
         padding-left: 5%;
         padding-right: 5%;
@@ -26,7 +28,14 @@
         padding-right: 5%;
     }
     .LoginButtonForm {
-        margin-top: 10%;
+        margin-top: 5%;
+        width: 90%;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    .noAccountYet {
+        text-align: center;
+        color: grey;
     }
 }
 

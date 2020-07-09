@@ -12,6 +12,7 @@ export default () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const { getSession } = useContext(AccountContext);
+  
 
   useEffect(() => {
     getSession().then(() => {
@@ -32,9 +33,10 @@ export default () => {
       })
 
   };
+  
   if (!loggedIn) {
   return (
-
+<div>
     <div className="loginForm">
       <Form onSubmit={onSubmit}>
         <h1 className="loginTitle">Se connecter</h1>
@@ -66,12 +68,14 @@ export default () => {
 
           </Form.Item>
         </div>
-
       </Form>
+
+    </div>
+
     </div>
   );
-          }
-          else {
-            return (null);
-          }
+  }
+  else {
+    return (null);
+  }
 };

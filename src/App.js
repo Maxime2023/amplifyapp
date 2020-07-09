@@ -1,13 +1,11 @@
 import React from "react";
 import { Account } from "./components/Accounts";
-import Signup from "./components/Signup/Signup";
-import Login from "./components/Login/Login";
-//import ForgotPassword from "./components/ForgotPassword";
 import Status from "./components/Status/Status";
-//import Settings from "./components/Settings";
 import MapChart from './components/Map';
 import Header from  "./components/Header/Header";
+import LoginAndRegistration from "./components/LoginAndRegistration/LoginAndRegistration";
 import './App.css';
+
 
 
 class App extends React.Component {
@@ -17,12 +15,7 @@ class App extends React.Component {
         <Account>
           <Header/>
           <Status />
-          <div className="SignUpAndLogin">
-            <Signup />
-            <Login />
-          </div>
-          {/* <ForgotPassword/>
-          <Settings/> */}
+          <LoginAndRegistration/>
           <MapChart/>
         </Account>
       </div>
