@@ -11,13 +11,13 @@ export default () => {
     getSession().then(() => {
       setLoggedIn(true);
     });
-  }, []);
+  });
 
   if (loggedIn) {
     return (
       <div>
           <div>
-            <img src={Map}></img>
+            <img src={Map} alt="Map"></img>
           </div>
     </div>
     );

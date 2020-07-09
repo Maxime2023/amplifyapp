@@ -39,5 +39,16 @@
     .confirmationCodeButton {
         margin-top: 2%;
     }
+    .connexionError {
+        color: red;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .registerDoneWithCode {
+        color: green;
+    }
+    .registerDoneWithCodeError {
+        color: red;
+    }
 }
 

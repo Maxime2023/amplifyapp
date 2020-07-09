@@ -17,7 +17,7 @@ export default () => {
     getSession().then(() => {
       setLoggedIn(true);
     });
-  }, []);
+  });
 
   const onSubmit = event => {
     event.preventDefault();
@@ -32,13 +32,6 @@ export default () => {
       })
 
   };
-
-  function refreshPage() {
-    if (loggedIn) {
-      window.location.reload(false);
-      console.log("oui");
-    }
-  }
   if (!loggedIn) {
   return (
 

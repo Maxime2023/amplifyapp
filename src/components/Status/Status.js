@@ -14,7 +14,7 @@ export default () => {
         console.log('Session:', session);
         setStatus(true);
       })
-  }, []);
+  });
 
   return (
     <div className="status">

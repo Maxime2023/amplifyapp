@@ -19,12 +19,10 @@ const Account = props => {
                   reject(err);
                 } else {
                   const results = {};
-
                   for (let attribute of attributes) {
                     const { Name, Value } = attribute;
                     results[Name] = Value;
                   }
-
                   resolve(results);
                 }
               });
