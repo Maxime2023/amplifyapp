@@ -33,7 +33,6 @@ export default () => {
         console.error(err.code);
         seterror(err.code);
         setConnexionError(true);
-        console.log("eroooooor", error);
       }
       else {
         changeButtonStatus(true);
@@ -52,14 +51,8 @@ export default () => {
     }
   }
 
-  const verif = () => {
-    user.confirmRegistration(verificationCode, true, function(err, result) {
-      if (err) {
-          setRegisterError(true);
-          return;
-      }
-      setRegisterSuccess(true);
-    });
+  const resetErrorMessage = () => {
+    seterror('')
   }
 
   if (!status) {
@@ -72,6 +65,7 @@ export default () => {
             <Input
               value={email}
               onChange={event => setEmail(event.target.value)}
+              onClick={resetErrorMessage}
             />
           </div>
           <div className="passwordTitleSignup">Mot de passe</div>
@@ -88,11 +82,13 @@ export default () => {
           <Input.Password
             value={password}
             onChange={event => setPassword(event.target.value)}
+            onClick={resetErrorMessage}
           />
           <div className="passwordConfirmSignup">Confirmer le mot de passe</div>
           <Input.Password
             value={confirmSecondPassword}
             onChange={event => confirmPassword(event.target.value)}
+            onClick={resetErrorMessage}
           />
           {isButtonPressed && checkPasswords() === "passwordDiff" ? <div className="passwordDiff">Les mots de passe sont différents</div> : null}
           {connexionError && error === "UsernameExistsException" ? <div className="connexionError">Cette e-mail est deja utilisée</div> : null}
@@ -100,19 +96,9 @@ export default () => {
           <div className="SignupButtonForm">
             <Button onClick={onSubmit}>S'inscrire</Button>
             </div>
-            {isButtonPressed && checkPasswords() === "passwordNotDiff" ? 
-            <div>
-            <div>Un code de confirmation vous a été envoyé à l'adresse mail indiquée</div>
-            <Input
-              value={verificationCode}
-              onChange={event => setverificationcod(event.target.value)}
-            />
-            <div className="confirmationCodeButton">
-              <Button onClick={verif}>Confirmer le code</Button>
-            </div>
-            {registersuccess ? <div className="registerDoneWithCode">Merci de bien vouloir vous connecter pour finaliser l'inscription</div> : <div></div>}
-            {registerError ? <div className="registerDoneWithCodeError">Le code est invalide</div> : <div></div>}
-            </div>: <div></div>}
+
+            {isButtonPressed && !error ? <div className="registerDoneWithCode">Votre demande d'inscription à bien été prise en compte, vous allez recevoir un mail de confirmation lorsque votre demande sera acceptée.</div> : <div></div>}
+
           </Form.Item>
           </div>
         </Form>
